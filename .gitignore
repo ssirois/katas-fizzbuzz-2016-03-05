@@ -1,0 +1,8 @@
+# editor files
+*~
+*.swp
+
+# generated files
+.vagrant
+bin
+vendor
