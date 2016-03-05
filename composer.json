@@ -5,7 +5,14 @@
     "bin-dir": "bin/"
   },
 
+  "autoload": {
+    "psr-4": {
+      "Kata\\FizzBuzz\\": "src/kata/fizzbuzz/"
+    }
+  },
+
   "require-dev": {
-    "behat/behat": "3.*@stable"
+    "behat/behat": "3.*@stable",
+    "phpunit/phpunit": "5.0.*@stable"
   }
 }
