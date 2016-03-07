@@ -14,8 +14,8 @@ class FizzBuzzGame {
     $this->screen = $screen;
   }
 
-  public function play($limit) {
-    $this->gameBoard = new FizzBuzzGameBoard($limit);
+  public function play($start, $end) {
+    $this->gameBoard = new FizzBuzzGameBoard($start, $end);
 
     foreach($this->gameBoard as $number) {
       $this->screen->display($number);

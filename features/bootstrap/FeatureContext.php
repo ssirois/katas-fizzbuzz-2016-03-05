@@ -41,11 +41,19 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I play up to number :limit
+     * @When I play up to number :end
      */
-    public function iPlayUpToNumber($limit)
+    public function iPlayUpToNumber($end)
     {
-      $this->game->play($limit);
+      $this->game->play(1, $end);
+    }
+
+    /**
+     * @When I play between number :start to :end
+     */
+    public function iPlayBetweenNumberTo($start, $end)
+    {
+      $this->game->play($start, $end);
     }
 
     /**

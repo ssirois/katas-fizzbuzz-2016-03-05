@@ -7,18 +7,20 @@ use Kata\FizzBuzz\Fizz;
 use Kata\FizzBuzz\Buzz;
 
 class FizzBuzzGameBoard implements \IteratorAggregate {
-  private $limit;
+  private $start;
+  private $end;
   private $board;
 
-  public function __construct($limit) {
-    $this->limit = $limit;
+  public function __construct($start, $end) {
+    $this->start = $start;
+    $this->end = $end;
     $this->build();
   }
 
   private function build() {
     $this->board = array();
 
-    for ($i = 1; $i <= $this->limit; $i++) {
+    for ($i = $this->start; $i <= $this->end; $i++) {
       if ($i % 3 == 0) {
         $this->board[] = new Fizz();
       }
