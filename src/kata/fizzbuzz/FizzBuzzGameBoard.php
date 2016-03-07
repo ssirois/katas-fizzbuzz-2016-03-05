@@ -6,7 +6,7 @@ use Kata\FizzBuzz\NumberImplementation;
 use Kata\FizzBuzz\Fizz;
 use Kata\FizzBuzz\Buzz;
 
-class FizzBuzzGameBoard {
+class FizzBuzzGameBoard implements \IteratorAggregate {
   private $limit;
   private $board;
 
@@ -31,8 +31,8 @@ class FizzBuzzGameBoard {
     }
   }
 
-  public function steps() {
-    return $this->board;
+  public function getIterator() {
+    return new \ArrayIterator($this->board);
   }
 }
 

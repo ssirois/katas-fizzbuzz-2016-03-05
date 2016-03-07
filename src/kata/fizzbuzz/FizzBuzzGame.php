@@ -17,8 +17,7 @@ class FizzBuzzGame {
   public function play($limit) {
     $this->gameBoard = new FizzBuzzGameBoard($limit);
 
-    $steps = $this->gameBoard->steps();
-    foreach($steps as $number) {
+    foreach($this->gameBoard as $number) {
       $this->screen->display($number);
     }
   }
