@@ -21,7 +21,10 @@ class FizzBuzzGameBoard implements \IteratorAggregate {
     $this->board = array();
 
     for ($i = $this->start; $i <= $this->end; $i++) {
-      if ($i % 3 == 0) {
+      if (($i % 3 == 0) && ($i % 5 == 0)) {
+        $this->board[] = new FizzBuzz();
+      }
+      else if ($i % 3 == 0) {
         $this->board[] = new Fizz();
       }
       else if ($i % 5 == 0) {
