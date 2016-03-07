@@ -18,6 +18,8 @@ class FeatureContext implements Context, SnippetAcceptingContext
     private $game;
     private $screen;
 
+    private $limit;
+
     /**
      * Initializes context.
      *
@@ -39,19 +41,11 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given game limit is :limit
+     * @When I play up to number :limit
      */
-    public function gameLimitIs($limit)
+    public function iPlayUpToNumber($limit)
     {
-      $this->game->setLimit($limit);
-    }
-
-    /**
-     * @When I play
-     */
-    public function iPlay()
-    {
-      $this->game->play();
+      $this->game->play($limit);
     }
 
     /**

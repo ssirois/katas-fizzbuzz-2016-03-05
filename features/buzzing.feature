@@ -5,6 +5,5 @@ Feature: Buzzing
 
   Scenario: Buzz on number five
     Given a FizzBuzzGame application exists
-    And game limit is 5
-    When I play
+    When I play up to number 5
     Then I should see "1 2 Fizz 4 Buzz"

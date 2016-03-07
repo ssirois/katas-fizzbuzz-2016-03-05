@@ -5,12 +5,10 @@ Feature: Counting
 
   Scenario: Counting up to 1
     Given a FizzBuzzGame application exists
-    And game limit is 1
-    When I play
+    When I play up to number 1
     Then I should see "1"
 
   Scenario: Counting up to 2
     Given a FizzBuzzGame application exists
-    And game limit is 2
-    When I play
+    When I play up to number 2
     Then I should see "1 2"
