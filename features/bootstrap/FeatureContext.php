@@ -8,6 +8,7 @@ use Behat\Gherkin\Node\TableNode;
 require_once __DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
 use Kata\FizzBuzz\FizzBuzzGame;
+use Kata\FizzBuzz\VirtualScreen;
 
 /**
  * Defines application features from the specific context.
@@ -15,7 +16,7 @@ use Kata\FizzBuzz\FizzBuzzGame;
 class FeatureContext implements Context, SnippetAcceptingContext
 {
     private $game;
-    private $gameOutputStream;
+    private $screen;
 
     /**
      * Initializes context.
@@ -26,12 +27,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
-      $this->gameOutputStream = fopen('php://memory', 'w+');
-    }
-
-    public function __destruct()
-    {
-      fclose($this->gameOutputStream);
     }
 
     /**
@@ -39,7 +34,8 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function aFizzbuzzgameApplicationExists()
     {
-      $this->game = new FizzBuzzGame($this->gameOutputStream);
+      $this->screen = new VirtualScreen();
+      $this->game = new FizzBuzzGame($this->screen);
     }
 
     /**
@@ -63,7 +59,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iShouldSee($expected)
     {
-      $actual = stream_get_contents($this->gameOutputStream, -1, 0);
+      $actual = $this->screen->getContent();
       assertEquals($expected, $actual);
     }
 }

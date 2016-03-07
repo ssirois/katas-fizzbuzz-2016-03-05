@@ -2,12 +2,19 @@
 
 namespace Kata\FizzBuzz;
 
-class FizzBuzzGame {
-  private $outputStream;
-  private $limit;
+use Kata\FizzBuzz\Screen;
+use Kata\FizzBuzz\Number;
+use Kata\FizzBuzz\NumberImplementation;
+use Kata\FizzBuzz\Fizz;
+use Kata\FizzBuzz\Buzz;
 
-  public function __construct($outputStream = STDOUT) {
-    $this->outputStream = $outputStream;
+class FizzBuzzGame {
+  private $screen;
+  private $limit;
+  private $gameSet;
+
+  public function __construct($screen) {
+    $this->screen = $screen;
   }
 
   public function setLimit($limit) {
@@ -15,23 +22,26 @@ class FizzBuzzGame {
   }
 
   public function play() {
-    $needASeparator = false;
-    for ($i = 1; $i <= $this->limit; $i++) {
-      if ($needASeparator) {
-        fwrite($this->outputStream, ' ');
-      }
+    $this->buildGameSet();
 
+    foreach($this->gameSet as $number) {
+      $this->screen->display($number);
+    }
+  }
+
+  private function buildGameSet() {
+    $this->gameSet = array();
+
+    for ($i = 1; $i <= $this->limit; $i++) {
       if ($i % 3 == 0) {
-        fwrite($this->outputStream, 'Fizz');
+        $this->gameSet[] = new Fizz();
       }
       else if ($i % 5 == 0) {
-        fwrite($this->outputStream, 'Buzz');
+        $this->gameSet[] = new Buzz();
       }
       else {
-        fwrite($this->outputStream, $i);
+        $this->gameSet[] = new NumberImplementation($i);
       }
-
-      $needASeparator = true;
     }
   }
 }
